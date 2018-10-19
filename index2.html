@@ -10,22 +10,11 @@
         <link rel="stylesheet" href="style.css">
         <title>Instagram Feed Mc</title>
     </head>
-    <body>
+    <body >
 <link href="https://fonts.googleapis.com/css?family=Roboto:300:400:700" rel="stylesheet">
-<div class="cards clearfix" id="app">
+<div id="app" class="cards clearfix">
 
-  <div class="col-4" v-for="publicacion in publicaciones">
-    <div class="card">
-      <div class="top" style="100%">
-        <img v-bind:src="publicacion.display_url">
-      </div>
-      <div class="bottom">
-        <h2>{{publicacion.owner.id}}</h2>
-        <p>{{publicacion.edge_media_to_caption.edges.0.node.text}}</p>
 
-      </div>
-    </div>
-  </div>
 </div>
         <script src="./js/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
@@ -61,7 +50,34 @@ function getBody(){
 }
 
 /*get hasthags posts*/
+const Http = new XMLHttpRequest();
+const url='https://www.instagram.com/explore/tags/mcguate/?__a=1';
+var publicaciones;
+Http.open("GET", url);
+Http.send();
+Http.onreadystatechange=(e)=>{
 
+publicaciones = JSON.parse(Http.responseText)
+console.log(publicaciones["graphql"]["hashtag"]["edge_hashtag_to_media"]["edges"])
+publicaciones = publicaciones["graphql"]["hashtag"]["edge_hashtag_to_media"]["edges"]
+
+for(var i = 0; i < publicaciones.length; i++){
+  console.log(publicaciones[i]["node"]["display_url"])
+  $('#app').append(`
+  <div class="col-4">
+  <div class="card">
+    <div class="top" style="padding-bottom=100%">
+      <img src=`+publicaciones[i]["node"]["display_url"]+`>
+    </div>
+    <div class="bottom">
+      <h2>username</h2>
+      <p>caption</p>
+    </div>
+    </div>
+  </div>`);
+}
+
+}
 
 
 
@@ -73,6 +89,7 @@ for(var i = 0; i < 10; i++){
     var padding = 100/relation;
 
     /*$('.card-col-'+j).append(`
+    <div class="col-4"
     <div class="card">
       <div class="top" style="padding-bottom: ${padding}%">
         <img src="https://www.unsplash.it/280/${randomImageHeight}/?random&sig=${Math.random()}">
@@ -80,6 +97,7 @@ for(var i = 0; i < 10; i++){
       <div class="bottom">
         <h2>${getTitle()}</h2>
         <p>${getBody()}</p>
+      </div>
       </div>
     </div>`);*/
   }
