@@ -5,9 +5,14 @@
   src: local('Metropolis'), url('fonts/NunitoSans-Regular.ttf') format('truetype');
 }
 
-.loading {
-		text-align: center;
-		padding: 100px 0 0 0;
+html, body {
+  width: 1920px;
+  height: 1080px;
+}
+
+body {
+  font: 600 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+  margin: 12px 0;
 }
 
 h1 {
@@ -15,6 +20,11 @@ h1 {
   color: dimgrey;
   font-size: 150px;
   font-family: 'Metropolis', serif;
+}
+
+.loading {
+		text-align: center;
+		padding: 100px 0 0 0;
 }
 
 .logo{
@@ -30,11 +40,11 @@ h1 {
   }
 }
 
-/* Large devices (desktops, 992px and up) */
+/* Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
  .card-columns {column-count: 3;}
 }
-
+*/
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
    .card-columns {column-count: 5;}
@@ -43,10 +53,7 @@ h1 {
      width: 40%;
    }
 }
-body {
-  font: 600 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
-  margin: 12px 0;
-}
+
 
 .loading {
   animation: fadeIn 2s ease-in both;
